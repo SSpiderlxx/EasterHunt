@@ -1,13 +1,14 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.AI;
 
 public class HostileAI : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private NavMeshAgent navAgent;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private GameObject proctilePrefab; //Blud can't spell
+    [SerializeField] private GameObject projectilePrefab;
 
     [Header("Layers")]
     [SerializeField] private LayerMask terrainLayer;
@@ -24,12 +25,35 @@ public class HostileAI : MonoBehaviour
     [SerializeField] private float forwardShotForce = 10f;
     [SerializeField] private float verticalShotForce = 5f;
 
-    [Header("Detection Range")]
+    [Header("Detection Ranges")]
     [SerializeField] private float visionRange = 20f;
     [SerializeField] private float engagementRange = 10f;
 
     private bool isPlayerVisible;
     private bool isPlayerInRange;
+
+    private void Awake()
+    {
+        if (playerTransform == null)
+        {
+            GameObject playerObj = GameObject.Find("Player");
+            if (playerObj != null)
+            {
+                playerTransform = playerObj.transform;
+            }
+        }
+
+        if (navAgent == null)
+        {
+            navAgent = GetComponent<NavMeshAgent>();
+        }
+    }
+
+    private void Update()
+    {
+        DetectPlayer();
+        UpdateBehaviourState();
+    }
 
     private void OnDrawGizmosSelected()
     {
@@ -48,13 +72,86 @@ public class HostileAI : MonoBehaviour
 
     private void FireProjectile()
     {
-        if (proctilePrefab ==  null || firePoint == null) return;
+        if (projectilePrefab == null || firePoint == null) return;
 
-        Rigidbody projectileRB = Instantiate(proctilePrefab, firePoint.position, Quaternion.identity).GetComponent<Rigidbody>();
-        projectileRB.AddForce(transform.forward * forwardShotForce, ForceMode.Impulse);
-        projectileRB.AddForce(transform.up * verticalShotForce, ForceMode.Impulse);
+        Rigidbody projectileRb = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity).GetComponent<Rigidbody>();
+        projectileRb.AddForce(transform.forward * forwardShotForce, ForceMode.Impulse);
+        projectileRb.AddForce(transform.up * verticalShotForce, ForceMode.Impulse);
 
-        Destroy(projectileRB.gameObject, 3f);
+        Destroy(projectileRb.gameObject, 3f);
     }
 
+    private void FindPatrolPoint()
+    {
+        float randomX = Random.Range(-patrolRadius, patrolRadius);
+        float randomZ = Random.Range(-patrolRadius, patrolRadius);
+
+        Vector3 potentialPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+        if (Physics.Raycast(potentialPoint, -transform.up, 2f, terrainLayer))
+        {
+            currentPatrolPoint = potentialPoint;
+            hasPatrolPoint = true;
+        }
+    }
+
+    private IEnumerator AttackCooldownRoutine()
+    {
+        isOnAttackCooldown = true;
+        yield return new WaitForSeconds(attackCooldown);
+        isOnAttackCooldown = false;
+    }
+
+
+    private void PerformPatrol()
+    {
+        if (!hasPatrolPoint)
+            FindPatrolPoint();
+
+        if (hasPatrolPoint)
+            navAgent.SetDestination(currentPatrolPoint);
+
+        if (Vector3.Distance(transform.position, currentPatrolPoint) < 1f)
+            hasPatrolPoint = false;
+    }
+
+    private void PerformChase()
+    {
+        if (playerTransform != null)
+        {
+            navAgent.SetDestination(playerTransform.position);
+        }
+    }
+
+    private void PerformAttack()
+    {
+        navAgent.SetDestination(transform.position);
+
+        if (playerTransform != null)
+        {
+            transform.LookAt(playerTransform);
+        }
+
+        if (!isOnAttackCooldown)
+        {
+            FireProjectile();
+            StartCoroutine(AttackCooldownRoutine());
+        }
+    }
+
+    private void UpdateBehaviourState()
+    {
+        if (!isPlayerVisible && !isPlayerInRange)
+        {
+            PerformPatrol();
+        }
+        else if (isPlayerVisible && !isPlayerInRange)
+        {
+            PerformChase();
+        }
+        else if (isPlayerVisible && isPlayerInRange)
+        {
+            PerformAttack();
+        }
+    }
 }
