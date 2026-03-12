@@ -11,14 +11,14 @@ public class Interactor : MonoBehaviour
     public float InteractRange;
     public Animator animator;
 
-    void Start()
-    {
-        
-    }
+    private float interactCooldown = 0.5f;
+    private float lastInteractTime = -Mathf.Infinity;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) {
+        if (Input.GetKeyDown(KeyCode.E) && Time.time - lastInteractTime >= interactCooldown)
+        {
+            lastInteractTime = Time.time;
             Ray r = new Ray(InteractorSource.position, InteractorSource.forward);
             if (Physics.Raycast(r,out RaycastHit hitInfo, InteractRange)) { 
                 if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))
