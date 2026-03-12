@@ -1,10 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private InputActionReference movement;
+    [SerializeField] private InputActionReference crouch;
+    [FormerlySerializedAs("run")]
+    [SerializeField] private InputActionReference sprint;
     
     [Tooltip("Movement speed in units per second.")]
     public float moveSpeed = 5f;
@@ -20,10 +24,14 @@ public class PlayerController : MonoBehaviour
 
     public Animator animator;
     private  float plsyerSpeed ; //0: idle 0.5: walk 1: run
+    private bool crouching;
+    private bool running;
 
     void Awake()
     {
-        movement.action.Enable();
+        movement?.action?.Enable();
+        crouch?.action?.Enable();
+        sprint?.action?.Enable();
 
         rb = GetComponent<Rigidbody>();
         if (rb != null)
@@ -47,7 +55,7 @@ public class PlayerController : MonoBehaviour
         if (rb != null)
         {
             float currentSpeed = moveSpeed;
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (running)
             {
                 currentSpeed *= runMultiplier;
             }
@@ -69,18 +77,24 @@ public class PlayerController : MonoBehaviour
         if (animator != null)
         {
             plsyerSpeed = inputDirection.magnitude / 2;
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (running)
             {
                 plsyerSpeed *= 2; // Running
             }
             animator.SetFloat("Speed", plsyerSpeed);
+            animator.SetBool("Crouch", crouching);
         }
     }
 
     void GetMovementInput()
     {
-        inputDirection = movement.action.ReadValue<Vector2>();
-
-        print(inputDirection);
+        inputDirection = movement != null ? movement.action.ReadValue<Vector2>() : Vector2.zero;
+        crouching = crouch != null && crouch.action.IsPressed();
+        running = sprint != null && sprint.action.ReadValue<float>() > 0.1f;
+        
+        if(!running && Input.GetKey(KeyCode.LeftShift))
+        {
+            running = true;
+        }
     }
 }
