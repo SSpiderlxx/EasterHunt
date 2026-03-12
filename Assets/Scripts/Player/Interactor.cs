@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 interface IInteractable { 
     public void Interact();
 }
 public class Interactor : MonoBehaviour
 {
+    [SerializeField] InputActionReference interact;
+
     public Transform InteractorSource;
     public float InteractRange;
     public Animator animator;
@@ -14,20 +17,38 @@ public class Interactor : MonoBehaviour
     private float interactCooldown = 0.5f;
     private float lastInteractTime = -Mathf.Infinity;
 
-    void Update()
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.E) && Time.time - lastInteractTime >= interactCooldown)
+        interact.action.Enable();
+    }
+
+    private void OnEnable()
+    {
+        interact.action.performed += Interact;
+    }
+
+    private void OnDisable()
+    {
+        interact.action.performed -= Interact;
+    }
+
+    void Interact(InputAction.CallbackContext ctx)
+    {
+        if (Time.time - lastInteractTime < interactCooldown)
         {
-            lastInteractTime = Time.time;
-            Ray r = new Ray(InteractorSource.position, InteractorSource.forward);
-            if (Physics.Raycast(r,out RaycastHit hitInfo, InteractRange)) { 
-                if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))
-                { 
-                    interactObj.Interact();
-                    if (animator != null)
-                    {
-                        animator.SetTrigger("Interact");
-                    }
+            return;
+        }
+
+        Ray r = new Ray(InteractorSource.position, InteractorSource.forward);
+        if (Physics.Raycast(r, out RaycastHit hitInfo, InteractRange))
+        {
+            if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))
+            {
+                lastInteractTime = Time.time;
+                interactObj.Interact();
+                if (animator != null)
+                {
+                    animator.SetTrigger("Interact");
                 }
             }
         }
