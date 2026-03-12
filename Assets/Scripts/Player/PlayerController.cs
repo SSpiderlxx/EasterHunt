@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     [Tooltip("Smoothly rotate to face movement direction when moving.")]
     public bool faceMovementDirection = true;
+    public bool canMove = true;
 
     Rigidbody rb;
     //Vector3 inputDirection;
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (!canMove) return;
         GetMovementInput();
         //float h = Input.GetAxisRaw("Horizontal");
         //float v = Input.GetAxisRaw("Vertical");
@@ -41,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(!canMove) return;
         if (rb != null)
         {
             float currentSpeed = moveSpeed;
@@ -68,7 +71,7 @@ public class PlayerController : MonoBehaviour
             plsyerSpeed = inputDirection.magnitude / 2;
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                plsyerSpeed = 1f; // Running
+                plsyerSpeed *= 2; // Running
             }
             animator.SetFloat("Speed", plsyerSpeed);
         }

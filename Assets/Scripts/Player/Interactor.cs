@@ -14,12 +14,14 @@ public class Interactor : MonoBehaviour
     public float InteractRange;
     public Animator animator;
 
-    private float interactCooldown = 0.5f;
+    private float interactCooldown = 2f;
     private float lastInteractTime = -Mathf.Infinity;
+    private PlayerController playerController;
 
     private void Awake()
     {
         interact.action.Enable();
+        
     }
 
     private void OnEnable()
@@ -32,8 +34,21 @@ public class Interactor : MonoBehaviour
         interact.action.performed -= Interact;
     }
 
+    void Update()
+    {
+        if (Time.time - lastInteractTime < interactCooldown)
+        {
+            return;
+        }
+         if (playerController != null)
+        {
+            playerController.canMove = true;
+        }
+    }
+
     void Interact(InputAction.CallbackContext ctx)
     {
+        playerController = GetComponent<PlayerController>();
         if (Time.time - lastInteractTime < interactCooldown)
         {
             return;
@@ -45,6 +60,11 @@ public class Interactor : MonoBehaviour
             if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))
             {
                 lastInteractTime = Time.time;
+                
+                if (playerController != null)
+                {
+                    playerController.canMove = false;
+                }
                 interactObj.Interact();
                 if (animator != null)
                 {

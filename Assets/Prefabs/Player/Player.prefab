@@ -121,9 +121,10 @@ GameObject:
   - component: {fileID: 4954906284551657446}
   - component: {fileID: 1705008552018439034}
   - component: {fileID: 4934421808923827059}
+  - component: {fileID: 6341307226120528215}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -215,9 +216,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e6bd74549154ebfbdd591b476c2749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movement: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   moveSpeed: 5
   runMultiplier: 1.5
   faceMovementDirection: 1
+  animator: {fileID: 1778236503159107548}
+--- !u!114 &6341307226120528215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5194175539656699085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23a9dcc712b251048bbbe7b8185a0eeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interact: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  InteractorSource: {fileID: 9157927102410670506}
+  InteractRange: 5
   animator: {fileID: 1778236503159107548}
 --- !u!1001 &3710331682639398520
 PrefabInstance:
