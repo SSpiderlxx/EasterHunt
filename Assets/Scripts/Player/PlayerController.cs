@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     Vector3 inputDirection;
 
+    public Animator animator;
+    private  float plsyerSpeed ; //0: idle 0.5: walk 1: run
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -50,6 +53,17 @@ public class PlayerController : MonoBehaviour
         {
             Quaternion targetRot = Quaternion.LookRotation(inputDirection, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 10f * Time.fixedDeltaTime);
+        }
+
+        // Update animator parameters
+        if (animator != null)
+        {
+            plsyerSpeed = inputDirection.magnitude / 2;
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                plsyerSpeed = 1f; // Running
+            }
+            animator.SetFloat("Speed", plsyerSpeed);
         }
     }
 }
