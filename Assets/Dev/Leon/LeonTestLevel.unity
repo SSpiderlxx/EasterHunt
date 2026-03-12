@@ -143,6 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InteractorSource: {fileID: 156110225}
   InteractRange: 0
+  animator: {fileID: 2003743103}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,6 +560,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2003743103 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1778236503159107548, guid: fbac609e8d8df4b92954856d94a92e6a, type: 3}
+  m_PrefabInstance: {fileID: 241869412448720619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &241869412448720619
 PrefabInstance:
   m_ObjectHideFlags: 0
