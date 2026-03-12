@@ -32,7 +32,8 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap:
     IgnoreProjection: False
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -234,10 +235,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_e4f72cadc7694424b9a67fddf2e278f9_Texture_1:
-        m_Texture: {fileID: 2800000, guid: 54631e082fd321b43ac5fa702e9ba82c, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_e4f72cadc7694424b9a67fddf2e278f9_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: 54631e082fd321b43ac5fa702e9ba82c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -797,6 +794,7 @@ Material:
     - _XYZPosition: {r: 0, g: 0, b: 0, a: 0}
     - emissive: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!114 &7194204262341659507
 MonoBehaviour:
   m_ObjectHideFlags: 11
@@ -809,4 +807,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 7
+  version: 10
