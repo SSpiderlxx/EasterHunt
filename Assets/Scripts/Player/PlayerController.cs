@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -5,6 +6,8 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+    
     [SerializeField] private InputActionReference movement;
     [SerializeField] private InputActionReference crouch;
     [FormerlySerializedAs("run")]
@@ -27,8 +30,11 @@ public class PlayerController : MonoBehaviour
     private bool crouching;
     private bool running;
 
+    public int health = 3;
+
     void Awake()
     {
+        instance = this;
         movement?.action?.Enable();
         crouch?.action?.Enable();
         sprint?.action?.Enable();
@@ -96,5 +102,32 @@ public class PlayerController : MonoBehaviour
         {
             running = true;
         }
+    }
+
+
+
+    // ABILITY SYSTEM
+    public void ApplyAbility(Ability ability)
+    {
+        // Implement ability effects on the player (e.g., modify speed, health, etc.)
+        // Start a coroutine to handle the ability's duration and expiration
+        StartCoroutine(ActiveAbilityCoroutine(ability));
+        
+    }
+
+    IEnumerator ActiveAbilityCoroutine(Ability ability)
+    {
+        // Apply ability effects
+        moveSpeed *= ability.speedModifier;
+        transform.localScale *= ability.sizeModifier;
+        health += ability.healthModifier;
+        
+        // Wait for the ability's lifetime
+        yield return new WaitForSeconds(ability.abilityLifetime);
+        
+        // Revert ability effects after it expires
+        // This is a placeholder for where you would revert the ability's effects.
+        moveSpeed /= ability.speedModifier;
+        transform.localScale /= ability.sizeModifier;
     }
 }
