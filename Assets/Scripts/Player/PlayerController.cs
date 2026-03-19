@@ -30,10 +30,15 @@ public class PlayerController : MonoBehaviour
     private bool crouching;
     private bool running;
 
-    public int health = 3;
+    private int health = 3;
 
     void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         instance = this;
         movement?.action?.Enable();
         crouch?.action?.Enable();
@@ -111,12 +116,19 @@ public class PlayerController : MonoBehaviour
     {
         // Implement ability effects on the player (e.g., modify speed, health, etc.)
         // Start a coroutine to handle the ability's duration and expiration
-        StartCoroutine(ActiveAbilityCoroutine(ability));
-        
+        StartCoroutine(ApplyAbilityEffects(ability));
     }
 
-    IEnumerator ActiveAbilityCoroutine(Ability ability)
+    bool isAbilityActive = false;
+    IEnumerator ApplyAbilityEffects(Ability ability)
     {
+        if (isAbilityActive)
+        {
+            // If an ability is already active, you can choose to either stack effects or ignore the new ability
+            // For this example, we'll ignore new abilities while one is active
+            yield break;
+        }
+        isAbilityActive = true;
         // Apply ability effects
         moveSpeed *= ability.speedModifier;
         transform.localScale *= ability.sizeModifier;
@@ -128,6 +140,6 @@ public class PlayerController : MonoBehaviour
         // Revert ability effects after it expires
         // This is a placeholder for where you would revert the ability's effects.
         moveSpeed /= ability.speedModifier;
-        transform.localScale /= ability.sizeModifier;
+        transform.localScale = new Vector3(1, 1, 1); // Assuming the original scale is 1
     }
 }
