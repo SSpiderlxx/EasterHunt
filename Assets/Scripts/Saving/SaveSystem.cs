@@ -1,4 +1,7 @@
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class SaveSystem : MonoBehaviour
 {
@@ -38,6 +41,31 @@ public class SaveSystem : MonoBehaviour
         PlayerPrefs.DeleteKey("saveData");
     }
 }
+
+// Editor Buttons for Debugging
+#if UNITY_EDITOR
+[CustomEditor(typeof(SaveSystem))]
+public class SaveSystemEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+        SaveSystem saveSystem = (SaveSystem)target;
+        if (GUILayout.Button("Save Game"))
+        {
+            SaveSystem.SaveGame();
+        }
+        if (GUILayout.Button("Load Game"))
+        {
+            SaveSystem.LoadGame();
+        }
+        if (GUILayout.Button("Delete Save"))
+        {
+            SaveSystem.DeleteSave();
+        }
+    }
+}
+#endif
 
 [System.Serializable]
 public class SaveData
