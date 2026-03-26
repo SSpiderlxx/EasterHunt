@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class SaveableObject : MonoBehaviour
 {
-    public string objectName;
 
     public static void LoadObject(SaveableObjectData data)
     {
-        GameObject obj = new GameObject(data.objectName);
+        GameObject obj = GameObject.Find(data.objectName);
         obj.transform.position = data.position;
         obj.transform.rotation = data.rotation;
     }
@@ -14,7 +13,7 @@ public class SaveableObject : MonoBehaviour
     public SaveableObjectData GetData()
     {
         SaveableObjectData data = new SaveableObjectData();
-        data.objectName = objectName;
+        data.objectName = gameObject.name;
         data.position = transform.position;
         data.rotation = transform.rotation;
         return data;
