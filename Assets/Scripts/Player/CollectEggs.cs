@@ -42,17 +42,19 @@ public class CollectEggs : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        throw new System.NotImplementedException();
+        collectSound.Play();
+        collectText.SetActive(false);
+        egg.SetActive(false);
     }
 
     //void Update()
     //{
-    //    if(inReach && Input.GetButtonDown("Interactor"))
+    //if(inReach && Input.GetButtonDown("Interactor"))
     //    {
     //        collectSound.Play();
-    //        collectText.SetActive(false);
-    //        egg.SetActive(false);
-    //    }
+    //    collectText.SetActive(false);
+    //      egg.SetActive(false);
+    //   }
 
     //}
 
