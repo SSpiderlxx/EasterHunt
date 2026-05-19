@@ -17,6 +17,11 @@ public class AbilityCollectable : MonoBehaviour, IInteractable
             return;
         }
         PlayerController.instance.ApplyAbility(ability);
+        SaveableObject saveableObject = GetComponent<SaveableObject>();
+        if (saveableObject != null)
+        {
+            saveableObject.MarkDestroyed();
+        }
         Destroy(gameObject);
     }
 }
