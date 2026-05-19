@@ -14,7 +14,7 @@ public class FadeObjectManager : MonoBehaviour
             return;
         }
 
-        FadeAllObjectsOut();
+        FadeAllObjectsIn();
         objectsAreFaded = true;
     }
 
@@ -25,7 +25,7 @@ public class FadeObjectManager : MonoBehaviour
             return;
         }
 
-        FadeAllObjectsIn();
+        FadeAllObjectsOut();
         objectsAreFaded = false;
     }
 
