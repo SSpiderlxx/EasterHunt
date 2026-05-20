@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 1570f03695310e84988ada9ea2e48147
+guid: 5624197fe07e62e459bb847d3c79b48f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: WallMaterial
-    second: {fileID: 2100000, guid: 040b7198741fb2940bc5548f5538fe48, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -40,7 +35,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importPhysicalCameras: 1
