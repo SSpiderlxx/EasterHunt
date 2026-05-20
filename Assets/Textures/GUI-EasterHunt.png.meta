@@ -1,0 +1,572 @@
+fileFormatVersion: 2
+guid: 5b291c2dfc8da44a2aa45e2d28e53ec1
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GUI-EasterHunt_0
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 1927
+        width: 780
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffb7b7d95aa104d5aa528431bc02bd84
+      internalID: -1039714001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI-EasterHunt_1
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 1930
+        width: 105
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c98d5250f05e94215890061965ad481a
+      internalID: -1234149172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI-EasterHunt_2
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 1930
+        width: 109
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9bc9233b18fc4520bb1d49c89aeeedd
+      internalID: -1434168659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI-EasterHunt_3
+      rect:
+        serializedVersion: 2
+        x: 1625
+        y: 1711
+        width: 361
+        height: 362
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42df53fa449314a56bdefd228dfff722
+      internalID: -1786063242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI-EasterHunt_4
+      rect:
+        serializedVersion: 2
+        x: 2013
+        y: 1711
+        width: 362
+        height: 362
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 970b13d188d5a4bd8a2bcf09dd97a30b
+      internalID: -605902160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI-EasterHunt_5
+      rect:
+        serializedVersion: 2
+        x: 2393
+        y: 1711
+        width: 362
+        height: 362
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6a8045aa11f747d7a459ed7e50ce031
+      internalID: 1477701120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI-EasterHunt_6
+      rect:
+        serializedVersion: 2
+        x: 2939
+        y: 1863
+        width: 311
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 526fc1187489f481e850782e4e09e9c5
+      internalID: -99918844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI-EasterHunt_7
+      rect:
+        serializedVersion: 2
+        x: 3282
+        y: 1863
+        width: 311
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 502029271773840f29f8259307839b1f
+      internalID: -1990099830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI-EasterHunt_8
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 1780
+        width: 779
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17a056c00a1b9442f87eef3900a9813a
+      internalID: -1014195330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI-EasterHunt_9
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 1765
+        width: 107
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96275a0f5a3464adf9069f0da4b9a05f
+      internalID: 1339220905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI-EasterHunt_10
+      rect:
+        serializedVersion: 2
+        x: 1068
+        y: 1765
+        width: 133
+        height: 122
+      alignment: 9
+      pivot: {x: 0.40624908, y: 0.4449683}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7b7a33aa5ca945f7be6a138ac09f1e4
+      internalID: -1641995110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI-EasterHunt_11
+      rect:
+        serializedVersion: 2
+        x: 2945
+        y: 1706
+        width: 142
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85dbee6e7043f4571b8b713becc152e8
+      internalID: -1645186156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI-EasterHunt_12
+      rect:
+        serializedVersion: 2
+        x: 3097
+        y: 1709
+        width: 142
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b1741dcfb29f424b81813437580a89f
+      internalID: 425146277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI-EasterHunt_13
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1632
+        width: 780
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3af78a88a4e494d1783cb01e492c7465
+      internalID: 1099790786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI-EasterHunt_14
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 1658
+        width: 597
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31597d97c38834fe69ad167686cbe6a2
+      internalID: -395995923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI-EasterHunt_15
+      rect:
+        serializedVersion: 2
+        x: 1542
+        y: 1619
+        width: 25
+        height: 109
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0985a4d556e14465c9eec44437ae3d39
+      internalID: -1175975110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI-EasterHunt_16
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 321
+        width: 1793
+        height: 433
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e23e705ac6da47d2840e291a459051f
+      internalID: 1386252227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI-EasterHunt_17
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 1412
+        width: 328
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b22d0f21103ed403b818b0e0809cf8be
+      internalID: -99851215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI-EasterHunt_18
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 1205
+        width: 582
+        height: 209
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53a532c808fe04d709d9c33dcf52fc6a
+      internalID: 615243381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 9eaf144410bef4580aa683b3dd4ee2f2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      GUI-EasterHunt_0: -1039714001
+      GUI-EasterHunt_1: -1234149172
+      GUI-EasterHunt_10: -1641995110
+      GUI-EasterHunt_11: -1645186156
+      GUI-EasterHunt_12: 425146277
+      GUI-EasterHunt_13: 1099790786
+      GUI-EasterHunt_14: -395995923
+      GUI-EasterHunt_15: -1175975110
+      GUI-EasterHunt_16: 1386252227
+      GUI-EasterHunt_17: -99851215
+      GUI-EasterHunt_18: 615243381
+      GUI-EasterHunt_19: 2018934211
+      GUI-EasterHunt_2: -1434168659
+      GUI-EasterHunt_20: -1580163668
+      GUI-EasterHunt_21: -1347187970
+      GUI-EasterHunt_22: 1308832980
+      GUI-EasterHunt_23: -1355134877
+      GUI-EasterHunt_24: -117454164
+      GUI-EasterHunt_25: -1128412668
+      GUI-EasterHunt_26: 1783243532
+      GUI-EasterHunt_27: 2014848340
+      GUI-EasterHunt_28: 603042935
+      GUI-EasterHunt_29: -1457560009
+      GUI-EasterHunt_3: -1786063242
+      GUI-EasterHunt_30: 1886225148
+      GUI-EasterHunt_31: -950762152
+      GUI-EasterHunt_32: 1395786955
+      GUI-EasterHunt_33: 1627523590
+      GUI-EasterHunt_34: -1743145811
+      GUI-EasterHunt_35: 233116
+      GUI-EasterHunt_36: -1746726545
+      GUI-EasterHunt_4: -605902160
+      GUI-EasterHunt_5: 1477701120
+      GUI-EasterHunt_6: -99918844
+      GUI-EasterHunt_7: -1990099830
+      GUI-EasterHunt_8: -1014195330
+      GUI-EasterHunt_9: 1339220905
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
