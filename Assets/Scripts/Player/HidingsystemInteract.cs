@@ -5,6 +5,8 @@ public class Hidingsystem : MonoBehaviour, IInteractable
 
     public bool CanInteract = true;
 
+    public Hide hidingmanager_script;
+
     public void Interact()
     {
         if (CanInteract == true)
@@ -16,6 +18,9 @@ public class Hidingsystem : MonoBehaviour, IInteractable
             {
                 if (hit.collider.CompareTag("Hide")) 
                 {
+
+                    CanInteract = false;
+                    hidingmanager_script.GoHide();
 
                 }
             }
