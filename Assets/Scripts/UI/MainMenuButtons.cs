@@ -18,6 +18,17 @@ public class MainMenuButtons : MonoBehaviour
         SceneManager.LoadScene(selectedScene);
     }
 
+    public void ContinueGame()
+    {
+        if (!SaveSystem.HasSave())
+        {
+            Debug.LogWarning("No save exists to continue.");
+            return;
+        }
+
+        SaveSystem.LoadGame();
+    }
+
     public void QuitGame()
     {
 #if UNITY_EDITOR

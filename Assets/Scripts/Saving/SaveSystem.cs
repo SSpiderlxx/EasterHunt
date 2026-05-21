@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -7,6 +8,29 @@ using UnityEditor;
 public class SaveSystem : MonoBehaviour
 {
     private static readonly HashSet<string> destroyedObjectIds = new HashSet<string>();
+    private static string pendingLoadJson;
+    private static string pendingSceneName;
+    private static bool sceneLoadedHooked;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetStatics()
+    {
+        pendingLoadJson = null;
+        pendingSceneName = null;
+        sceneLoadedHooked = false;
+    }
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    private static void RegisterSceneLoadedHandler()
+    {
+        if (sceneLoadedHooked)
+        {
+            return;
+        }
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        sceneLoadedHooked = true;
+    }
 
     public static void SaveGame()
     {
@@ -17,6 +41,19 @@ public class SaveSystem : MonoBehaviour
         SaveData saveData = new SaveData();
         saveData.destroyedObjectIds = GetDestroyedObjectIds();
         saveData.playerPosition = player != null ? player.transform.position : Vector3.zero;
+        saveData.sceneName = SceneManager.GetActiveScene().name;
+        // capture score and timer if present
+        ScoreManager scoreMgr = FindFirstObjectByType<ScoreManager>();
+        if (scoreMgr != null)
+        {
+            saveData.score = scoreMgr.GetScore();
+        }
+
+        global::Timer timer = FindFirstObjectByType<global::Timer>();
+        if (timer != null)
+        {
+            saveData.remainingTime = timer.GetRemainingTime();
+        }
 
         for (int i = 0; i < objectsToSave.Length; i++)
         {
@@ -43,30 +80,93 @@ public class SaveSystem : MonoBehaviour
             string json = PlayerPrefs.GetString("saveData");
             SaveData saveData = JsonUtility.FromJson<SaveData>(json);
 
-            SetDestroyedObjectIds(saveData.destroyedObjectIds);
-
-            SaveableObject[] liveObjects = FindObjectsByType<SaveableObject>(FindObjectsSortMode.None);
-            foreach (SaveableObject liveObject in liveObjects)
+            if (saveData == null)
             {
-                if (liveObject != null && destroyedObjectIds.Contains(liveObject.ObjectId))
-                {
-                    Destroy(liveObject.gameObject);
-                }
+                Debug.LogWarning("Save data could not be loaded.");
+                return;
             }
 
-            if (saveData.objects != null)
+            if (!string.IsNullOrWhiteSpace(saveData.sceneName) && SceneManager.GetActiveScene().name != saveData.sceneName)
             {
-                foreach (SaveableObjectData objData in saveData.objects)
-                {
-                    SaveableObject.LoadObject(objData);
-                }
+                pendingLoadJson = json;
+                pendingSceneName = saveData.sceneName;
+                SceneManager.LoadScene(saveData.sceneName);
+                return;
             }
 
-            PlayerController player = FindFirstObjectByType<PlayerController>();
-            if (player != null)
+            ApplySaveData(saveData);
+        }
+    }
+
+    public static bool HasSave()
+    {
+        return PlayerPrefs.HasKey("saveData");
+    }
+
+    private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (string.IsNullOrEmpty(pendingLoadJson))
+        {
+            return;
+        }
+
+        if (!string.IsNullOrWhiteSpace(pendingSceneName) && scene.name != pendingSceneName)
+        {
+            return;
+        }
+
+        string json = pendingLoadJson;
+        pendingLoadJson = null;
+        pendingSceneName = null;
+
+        SaveData saveData = JsonUtility.FromJson<SaveData>(json);
+        if (saveData == null)
+        {
+            Debug.LogWarning("Save data could not be loaded after scene change.");
+            return;
+        }
+
+        ApplySaveData(saveData);
+    }
+
+    private static void ApplySaveData(SaveData saveData)
+    {
+        SetDestroyedObjectIds(saveData.destroyedObjectIds);
+
+        SaveableObject[] liveObjects = FindObjectsByType<SaveableObject>(FindObjectsSortMode.None);
+        foreach (SaveableObject liveObject in liveObjects)
+        {
+            if (liveObject != null && destroyedObjectIds.Contains(liveObject.ObjectId))
             {
-                player.transform.position = saveData.playerPosition;
+                Destroy(liveObject.gameObject);
             }
+        }
+
+        if (saveData.objects != null)
+        {
+            foreach (SaveableObjectData objData in saveData.objects)
+            {
+                SaveableObject.LoadObject(objData);
+            }
+        }
+
+        PlayerController player = FindFirstObjectByType<PlayerController>();
+        if (player != null)
+        {
+            player.transform.position = saveData.playerPosition;
+        }
+
+        // restore score and timer
+        ScoreManager scoreMgr2 = FindFirstObjectByType<ScoreManager>();
+        if (scoreMgr2 != null)
+        {
+            scoreMgr2.SetScore(saveData.score);
+        }
+
+        global::Timer timer2 = FindFirstObjectByType<global::Timer>();
+        if (timer2 != null)
+        {
+            timer2.SetRemainingTime(saveData.remainingTime);
         }
     }
 
@@ -170,4 +270,7 @@ public class SaveData
     public SaveableObjectData[] objects;
     public string[] destroyedObjectIds;
     public Vector3 playerPosition;
+    public string sceneName;
+    public int score;
+    public float remainingTime;
 }

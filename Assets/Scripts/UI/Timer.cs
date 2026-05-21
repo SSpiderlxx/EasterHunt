@@ -30,4 +30,14 @@ public class Timer : MonoBehaviour
             hasWon = false;
         }
     }
+
+    public float GetRemainingTime()
+    {
+        return remainingTime;
+    }
+
+    public void SetRemainingTime(float time)
+    {
+        remainingTime = time;
+    }
 }

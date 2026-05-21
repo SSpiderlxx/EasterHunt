@@ -24,4 +24,18 @@ public class ScoreManager : MonoBehaviour
         score += 1;
         scoreText.text = score.ToString() + " POINTS";
     }
+
+    public int GetScore()
+    {
+        return score;
+    }
+
+    public void SetScore(int newScore)
+    {
+        score = newScore;
+        if (scoreText != null)
+        {
+            scoreText.text = score.ToString() + " POINTS";
+        }
+    }
 }
