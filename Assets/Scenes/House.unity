@@ -2675,6 +2675,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dad
       objectReference: {fileID: 0}
+    - target: {fileID: 6862643120226231881, guid: a6339b39fddb24b36921d84b08c55941, type: 3}
+      propertyPath: viewRadius
+      value: 180
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13269,6 +13273,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6119708279008492184, guid: 9da0d897727e7442eae3a5eff546240c, type: 3}
+      propertyPath: viewRadius
+      value: 180
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18846,6 +18854,10 @@ PrefabInstance:
     - target: {fileID: 2774299587163372086, guid: 5d7f00ff2d838491f907ff4120b937ba, type: 3}
       propertyPath: m_Name
       value: Mom
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909444526065507163, guid: 5d7f00ff2d838491f907ff4120b937ba, type: 3}
+      propertyPath: viewRadius
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6544257824821425886, guid: 5d7f00ff2d838491f907ff4120b937ba, type: 3}
       propertyPath: m_LocalPosition.x
