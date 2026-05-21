@@ -179,12 +179,13 @@ public class AIController : MonoBehaviour
 
     void EnviromentView()
     {
+        m_PlayerInRange = false;
         Collider[] playerInRange = Physics.OverlapSphere(transform.position, viewRadius, playerMask);
 
         for (int i = 0; i < playerInRange.Length; i++)
         {
             Transform player = playerInRange[i].transform;
-            Vector3 dirToPlayer = player.position - transform.position.normalized;
+            Vector3 dirToPlayer = (player.position - transform.position).normalized;
             if(Vector3.Angle(transform.forward, dirToPlayer)< viewAngle / 2)
             {
                 float dstToPlayer = Vector3.Distance(transform.position, player.position);
@@ -193,10 +194,6 @@ public class AIController : MonoBehaviour
                     m_PlayerInRange = true;
                     m_IsPatrol = false;
                 }
-                else
-                {
-                    m_PlayerInRange = false;
-                }
 
                 if (m_PlayerInRange)
                 {
@@ -204,6 +201,11 @@ public class AIController : MonoBehaviour
                 }
             }
 
+        }
+
+        if (!m_PlayerInRange)
+        {
+            m_IsPatrol = true;
         }
     }
 }

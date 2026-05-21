@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 1705008552018439034}
   - component: {fileID: 4934421808923827059}
   - component: {fileID: 6341307226120528215}
+  - component: {fileID: 7438332302649534913}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -224,6 +225,7 @@ MonoBehaviour:
   faceMovementDirection: 1
   canMove: 1
   animator: {fileID: 1778236503159107548}
+  healthText: {fileID: 0}
 --- !u!114 &6341307226120528215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +243,19 @@ MonoBehaviour:
   InteractRange: 4
   InteractRadius: 1
   animator: {fileID: 1778236503159107548}
+--- !u!114 &7438332302649534913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5194175539656699085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 145da592b0fa4a4adbe0a4f1c4d84fe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectId: cf0e109e4e10466e930a375835fb8454
 --- !u!1001 &3710331682639398520
 PrefabInstance:
   m_ObjectHideFlags: 0
