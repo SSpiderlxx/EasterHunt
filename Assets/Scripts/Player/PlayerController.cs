@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -53,6 +54,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SaveSystem.SaveGame();
+            SceneManager.LoadScene("MainMenu");
+            return;
+        }
         if (!canMove) return;
         GetMovementInput();
         //float h = Input.GetAxisRaw("Horizontal");
