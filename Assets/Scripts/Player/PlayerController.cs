@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour
     private bool running;
 
     private int health = 3;
+    private float lastDamageTime = -Mathf.Infinity;
+    private const float damageCooldown = 1f;
+    private bool isDead;
 
     void Awake()
     {
@@ -65,6 +68,54 @@ public class PlayerController : MonoBehaviour
         //float h = Input.GetAxisRaw("Horizontal");
         //float v = Input.GetAxisRaw("Vertical");
         //inputDirection = new Vector3(h, 0f, v).normalized;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (isDead)
+        {
+            return;
+        }
+
+        if (!collision.collider.CompareTag("Enemy"))
+        {
+            return;
+        }
+
+        TakeDamage(1);
+    }
+
+    private void TakeDamage(int amount)
+    {
+        if (Time.time - lastDamageTime < damageCooldown)
+        {
+            return;
+        }
+
+        lastDamageTime = Time.time;
+        health = Mathf.Max(0, health - amount);
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        if (isDead)
+        {
+            return;
+        }
+
+        isDead = true;
+        canMove = false;
+
+        Timer timer = FindFirstObjectByType<Timer>();
+        if (timer != null)
+        {
+            timer.ShowLostScreen();
+        }
     }
 
     void FixedUpdate()
