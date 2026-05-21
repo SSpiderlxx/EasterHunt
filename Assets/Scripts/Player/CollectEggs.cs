@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 
 public class CollectEggs : MonoBehaviour, IInteractable
 {
-    public GameObject collectText;
+    //public GameObject collectText;
 
     public AudioSource collectSound;
 
@@ -15,7 +15,7 @@ public class CollectEggs : MonoBehaviour, IInteractable
 
     void Start()
     {
-        collectText.SetActive(false);
+        //collectText.SetActive(false);
 
         inReach = false;
 
@@ -27,7 +27,7 @@ public class CollectEggs : MonoBehaviour, IInteractable
         if (other.gameObject.tag == "Reach")
         {
             inReach = true;
-            collectText.SetActive(true);
+            //collectText.SetActive(true);
         }
     }
 
@@ -36,14 +36,15 @@ public class CollectEggs : MonoBehaviour, IInteractable
         if (other.gameObject.tag == "Reach")
         {
             inReach = false;
-            collectText.SetActive(false);
+            //collectText.SetActive(false);
         }
     }
 
     public void Interact()
     {
+        ScoreManager.instance.AddPoint();
         collectSound.Play();
-        collectText.SetActive(false);
+        //collectText.SetActive(false);
         egg.SetActive(false);
     }
 
