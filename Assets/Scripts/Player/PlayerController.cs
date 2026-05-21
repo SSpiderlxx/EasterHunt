@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
@@ -34,6 +35,15 @@ public class PlayerController : MonoBehaviour
     private int health = 3;
     private float lastDamageTime = -Mathf.Infinity;
     private const float damageCooldown = 1f;
+    [SerializeField] private TextMeshProUGUI healthText;
+    
+    private void UpdateHealthUI()
+    {
+        if (healthText != null)
+        {
+            healthText.text = health.ToString();
+        }
+    }
     private bool isDead;
 
     void Awake()
@@ -53,6 +63,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.freezeRotation = true;
         }
+        UpdateHealthUI();
     }
 
     void Update()
@@ -94,6 +105,7 @@ public class PlayerController : MonoBehaviour
 
         lastDamageTime = Time.time;
         health = Mathf.Max(0, health - amount);
+        UpdateHealthUI();
 
         if (health <= 0)
         {
