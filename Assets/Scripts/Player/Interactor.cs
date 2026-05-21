@@ -12,6 +12,7 @@ public class Interactor : MonoBehaviour
 
     public Transform InteractorSource;
     public float InteractRange;
+    public float InteractRadius = 0.5f;
     public Animator animator;
 
     private float interactCooldown = 2f;
@@ -54,8 +55,9 @@ public class Interactor : MonoBehaviour
             return;
         }
 
-        Ray r = new Ray(InteractorSource.position, InteractorSource.forward);
-        if (Physics.Raycast(r, out RaycastHit hitInfo, InteractRange))
+        Vector3 origin = InteractorSource.position;
+        Vector3 direction = InteractorSource.forward;
+        if (Physics.SphereCast(origin, InteractRadius, direction, out RaycastHit hitInfo, InteractRange))
         {
             if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))
             {
